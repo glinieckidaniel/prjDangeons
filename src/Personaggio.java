@@ -1,41 +1,72 @@
+
 public class Personaggio {
     private String nome;
-    private int hp, attk,def;
+    private int[]pos;
+    private int atk;
+    private int def;
+    private int hp;
+    private int maxHp;
     private double range;
-    private int[] pos;
 
-
-    public Personaggio(String nome, int hp, int attk, int def, double range, int[] pos) {
-        this.nome = nome;
-        this.hp = hp;
-        this.attk = attk;
-        this.def = def;
-        this.range = range;
-        for(int i = 0;i< pos.length;i++) {
-            this.pos[i] = pos[i];
-        }
+    public int getDef() {
+        return def;
     }
 
+    public int getHp() {
+        return hp;
+    }
+
+    public int getAtk() {
+        return atk;
+    }
+
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
+
+
+
+    public Personaggio(String nome, int[] pos, int atk, int def, int hp, int maxHp, double range) {
+        this.nome = nome;
+        this.pos = pos;
+        this.atk = atk;
+        this.def = def;
+        this.hp = hp;
+        this.maxHp = maxHp;
+        this.range = range;
+    }
     public int attacco(Personaggio nemico){
-        int danno;
-        danno = attk*3-nemico.def*2;
+        int danno=atk*3-nemico.getDef()*2;
         if(danno<=0){
-            danno = 1;
+            danno=1;
         }
         return danno;
     }
-
+    public void movimento(int x, int y){
+        pos[0]+=x;
+        pos[1]+=y;
+    }
     public boolean isVivo(){
-        boolean stato = true;
-        if(hp<=0){
-            stato =  false;
+        boolean vivo=false;
+        if(hp>0){
+            vivo=true;
         }
-        return stato;
+        return vivo;
+    }
+    public boolean subisciDanno(int danno){
+        hp-=danno;
+        return isVivo();
     }
 
-    public boolean subisciDanno(int danno){
-          hp-= danno;
-          return isVivo();
+    public void setHp(int hp) {
+        this.hp = hp;
     }
+
+    @Override
+    public String toString() {
+        return "Personaggio{" + "nome=" + nome + ", pos=" + pos[0] +";"+pos[1]+ ", atk=" + atk + ", def=" + def + ", hp=" + hp + ", maxHp=" + maxHp + ", range=" + range + '}';
+    }
+
+
 }
 
