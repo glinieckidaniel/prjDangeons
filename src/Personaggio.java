@@ -62,6 +62,14 @@ public class Personaggio {
         this.hp = hp;
     }
 
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public void setDef(int def) {
+        this.def = def;
+    }
+
     @Override
     public String toString() {
         return "Personaggio{" + "nome=" + nome + ", pos=" + pos[0] +";"+pos[1]+ ", atk=" + atk + ", def=" + def + ", hp=" + hp + ", maxHp=" + maxHp + ", range=" + range + '}';
